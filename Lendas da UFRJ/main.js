@@ -7,8 +7,8 @@ let cont = 0;
 function get_images(n){
     for(let i = 1; i <= n; i++){
 
-        images.push(i + ".jpg");
-        images.push(i + ".jpg");
+        images.push(i + ".png");
+        images.push(i + ".png");
 
     }
 }
@@ -30,12 +30,43 @@ function sort_images(images){
 function insert_images(images){
     for(let i = 0; i < images.length; i++){
         let image = document.createElement("img");
-        image.setAttribute("class", images[i]);
-        image.setAttribute("src", `images/interrogation_mark.png`);
+        image.setAttribute("data-image_name", images[i]);
+        image.setAttribute("src", `images/interrogation-mark.png`);
+        image.addEventListener('click', function(){
+            flip_card(this);
+        })
+        //image.setAttribute("src", `images/`+images[i]);
         document.querySelector(".game-container").appendChild(image);
     }
 }
 
+function check_images(){
+
+}
+
+//flips card and determine next actions
+function flip_card(image){
+    src = image.getAttribute('src');
+
+    //check if card is already fliped
+    if(src != 'images/interrogation-mark.png'){
+        return null;
+    }
+    
+    console.log(cont);
+    //changes image src
+    path = image.getAttribute('data-image_name');
+    console.log(path);
+    image.setAttribute("src", `images/`+path);
+
+    cont ++;
+
+    if(cont === 2){
+
+    }
+
+
+}
 function main(){
 
     console.log("images");
